@@ -22,5 +22,7 @@ Just download the [latest release](https://github.com/berrnd/MenuLauncher/releas
 ## Other notes
 - Files containing only `-` characters (excluding file extension and left N characters defined in `--hide-left`) are replaced with separators in the menu
 
+- If shift is pressed on application start, the folder given in `FolderPath` will be opened instead of the menu shown
+
 # License
 The MIT License (MIT)

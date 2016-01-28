@@ -20,8 +20,15 @@ namespace MenuLauncher
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.Hide();
-            this.contextMenuStrip_menu.ShowImageMargin = this.Parameters.ShowIcons;
 
+            //Open given directory and exit if shift is pressed
+            if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+            {
+                Process.Start(this.Parameters.DirectoryPath);
+                Application.Exit();
+            }
+
+            this.contextMenuStrip_menu.ShowImageMargin = this.Parameters.ShowIcons;
             foreach (FileInfo item in new DirectoryInfo(this.Parameters.DirectoryPath).GetFiles())
             {
                 if (!item.Attributes.HasFlag(FileAttributes.Hidden))
