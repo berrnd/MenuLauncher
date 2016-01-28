@@ -17,5 +17,7 @@ Just download the [latest release](https://github.com/berrnd/MenuLauncher/releas
 
 `--add-info-below` Add some insensitive items at the bottom of the menu
 
+`--hide-left` Hide left N characters of every menu entry, useful if you use numbers for sorting
+
 # License
 The MIT License (MIT)

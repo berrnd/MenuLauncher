@@ -26,7 +26,7 @@ namespace MenuLauncher
                 if (!item.Attributes.HasFlag(FileAttributes.Hidden))
                 {
                     ToolStripMenuItem menuItem = new ToolStripMenuItem();
-                    menuItem.Text = Path.GetFileNameWithoutExtension(item.FullName);
+                    menuItem.Text = Path.GetFileNameWithoutExtension(item.FullName).Substring(this.Parameters.HideLeft);
                     menuItem.Tag = item.FullName;
                     menuItem.Click += this.MenuItem_Click;
 

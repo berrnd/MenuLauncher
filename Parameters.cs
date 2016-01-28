@@ -11,6 +11,7 @@ namespace MenuLauncher
         public List<string> InfoPartsBelow { get; private set; } = new List<string>();
         public List<string> InfoPartsBefore { get; private set; } = new List<string>();
         public bool ShowIcons { get; private set; } = true;
+        public int HideLeft { get; private set; } = 0;
 
         public static Parameters Parse(string[] args)
         {
@@ -33,6 +34,16 @@ namespace MenuLauncher
 
                     if (item.Equals("--no-icons", StringComparison.CurrentCultureIgnoreCase))
                         parsedParams.ShowIcons = false;
+
+                    if (item.StartsWith("--hide-left=", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        try
+                        {
+                            parsedParams.HideLeft = int.Parse(item.Split('=')[1]);
+                        }
+                        catch (Exception)
+                        { }
+                    }
                 }
             }
 
