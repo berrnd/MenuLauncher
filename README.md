@@ -19,5 +19,8 @@ Just download the [latest release](https://github.com/berrnd/MenuLauncher/releas
 
 `--hide-left` Hide left N characters of every menu entry, useful if you use numbers for sorting
 
+## Other notes
+- Files containing only `-` characters (excluding file extension and left N characters defined in `--hide-left`) are replaced with separators in the menu
+
 # License
 The MIT License (MIT)

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MenuLauncher
@@ -25,15 +26,26 @@ namespace MenuLauncher
             {
                 if (!item.Attributes.HasFlag(FileAttributes.Hidden))
                 {
-                    ToolStripMenuItem menuItem = new ToolStripMenuItem();
-                    menuItem.Text = Path.GetFileNameWithoutExtension(item.FullName).Substring(this.Parameters.HideLeft);
-                    menuItem.Tag = item.FullName;
-                    menuItem.Click += this.MenuItem_Click;
+                    string menuItemText = Path.GetFileNameWithoutExtension(item.FullName).Substring(this.Parameters.HideLeft);
 
-                    if (this.Parameters.ShowIcons)
-                        menuItem.Image = Icon.ExtractAssociatedIcon(item.FullName).ToBitmap();
+                    if (menuItemText.All(x => x == '-'))
+                    {
+                        //Add menu separator
+                        this.contextMenuStrip_menu.Items.Add(new ToolStripSeparator());
+                    }
+                    else
+                    {
+                        //Add menu item
+                        ToolStripMenuItem menuItem = new ToolStripMenuItem();
+                        menuItem.Text = menuItemText;
+                        menuItem.Tag = item.FullName;
+                        menuItem.Click += this.MenuItem_Click;
 
-                    this.contextMenuStrip_menu.Items.Add(menuItem);
+                        if (this.Parameters.ShowIcons)
+                            menuItem.Image = Icon.ExtractAssociatedIcon(item.FullName).ToBitmap();
+
+                        this.contextMenuStrip_menu.Items.Add(menuItem);
+                    }
                 }
             }
 
